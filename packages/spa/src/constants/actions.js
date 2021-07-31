@@ -1,0 +1,4 @@
+// Commons
+export const CLEAN_APP_ERROR = 'CLEAN_APP_ERROR';
+export const DISPATCH_ERROR_TYPE = 'DISPATCH_ERROR_TYPE';
+export const REDIRECT_TO_URL = 'REDIRECT_TO_URL';

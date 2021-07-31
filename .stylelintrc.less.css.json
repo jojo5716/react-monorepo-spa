@@ -1,0 +1,35 @@
+{
+    "extends": [
+        "stylelint-config-standard"
+    ],
+    "plugins": [
+        "stylelint-order"
+    ],
+    "rules":
+    {
+        "block-closing-brace-newline-before": "always",
+        "block-no-empty": null,
+        "block-opening-brace-newline-after": "always",
+        "color-hex-case": "lower",
+        "color-no-invalid-hex": true,
+        "comment-empty-line-before": [ "always", {
+            "ignore": ["stylelint-commands", "after-comment"]
+        }],
+        "declaration-colon-space-after": "always-single-line",
+        "function-calc-no-invalid": null,
+        "indentation": [4],
+        "max-empty-lines": 2,
+        "number-leading-zero": "never",
+        "order/order": [
+            "custom-properties",
+            "declarations"
+        ],
+        "order/properties-alphabetical-order": true,
+        "rule-empty-line-before": [ "always", {
+            "except": ["first-nested"],
+            "ignore": ["after-comment"]
+        }],
+        "string-no-newline": null,
+        "unit-allowed-list": ["deg", "em", "rem", "%", "vh", "vw", "ms"]
+    }
+}

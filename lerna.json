@@ -1,0 +1,29 @@
+{
+  "version": "independent",
+  "packages": [
+    "packages/*",
+    "pages/**/*",
+    "utils/**/*"
+  ],
+  "command": {
+    "version": {
+        "allowBranch": ["master", "feature/*"]
+    },
+    "publish": {
+      "ignoreChanges": [
+        ".*",
+        "*.md",
+        "test",
+        "webpack*",
+        "example"
+      ],
+      "message": "chore(release): CI publish new version"
+    },
+    "bootstrap": {
+      "ignore": "component-*",
+      "npmClientArgs": [
+        ""
+      ]
+    }
+  }
+}

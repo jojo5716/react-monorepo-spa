@@ -1,0 +1,4 @@
+# SVGs icons
+src/icons
+*.svg
+packages/spa/doc/**

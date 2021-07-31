@@ -1,0 +1,19 @@
+{
+  "name": "@i2tic/content-page",
+  "version": "0.0.0",
+  "description": "This component renders a common structure form content pages",
+  "main": "./src/index.js",
+  "publishConfig": {
+    "registry": "http://35.205.171.33/"
+  },
+  "scripts": {
+    "preversion": "npm run dist",
+    "dist": "webpack --config webpack.prod.js",
+    "test": "NODE_ENV=test jest test --config ../../jest.config.js",
+    "test:watch": "NODE_ENV=test jest test --config=../../jest.config.js --watch"
+  },
+  "keywords": [],
+  "author": "I2TIC",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/i2tic/monorepo-boilerplate"
+}

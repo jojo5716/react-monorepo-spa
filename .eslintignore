@@ -1,0 +1,13 @@
+**/dist/**
+**/__dist__/**
+**/deploy/**
+**/node_modules/**
+**/mocks/**
+**/cypress/**
+**/coverage/**
+**/webpack.*.js
+**/example/**
+**/skeletons.js
+packages/spa/src/constants/skeletons/**/*.js
+packages/spa/src/polyfill/**/*.js
+packages/spa/doc/**

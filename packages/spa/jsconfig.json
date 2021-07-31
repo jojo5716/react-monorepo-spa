@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "es2017",
+      "allowSyntheticDefaultImports": false,
+      "baseUrl": "./",
+      "paths": {
+        "@mocks/*": ["mocks/*"],
+        "@src/*": ["src/*"],
+        "@constants/*": ["src/constants/*"],
+        "@core/*": ["src/core/*"]
+      }
+    },
+    "exclude": ["node_modules", "dist"]
+  }
+  

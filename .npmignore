@@ -1,0 +1,11 @@
+coverage
+test
+example
+webpack.dev.js
+webpack.deploy.js
+webpack.prod.js
+.babelrc
+.npmignore
+.npmrc
+.idea
+.vscode
