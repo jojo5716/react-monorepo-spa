@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
 
-import {
-    redirectToUrl,
-} from '@src/core/app/actions';
+import { redirectToUrl } from '@src/core/app/actions';
 import Page from './Page';
 
 const mapStateToProps = () => ({});

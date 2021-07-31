@@ -50,22 +50,21 @@ También construye ciertas props según el container.
 
 ## middlewares
 Aqui gestionamos los diferentes middleware que se ejecutarán entre acciones.
+
 :::important
 Si creamos nuevos middleware debemos recordar de inicializarlos en el store.
 :::
 
 ## Todo lo demás
 Para todos los otros directorios, como por ejemplo:
-* availability
-* confirmation
-* events
-* mobilis
+* app
 
 Son simplemente módulos de los contenedores donde contienen 3 ficheros:
 * **actions.js**: Aqui creamos las acciones únicas para ese contenedor
 * **reducers.js**: Aqui mapeamos cuales acciones permiten modificar el estado
+
 :::important
-Recuerda que **NO** todas las acciones modifican el estado directamente. A veces nos interesa lanzar una acción que pide accede a una api y según la respuesta lanza una acción u otra ó guarda la respuesta en el estado.
-En el reducers.js sólo debemos asignar las acciones que queremos que modifiquen el estado.
+Recuerda que **NO** todas las acciones modifican el estado directamente. A veces nos interesa lanzar una acción que accede a una api y según la respuesta lanza una acción u otra ó guarda la respuesta en el estado.
+En el reducers.js sólo debemos asignar las acciones que queremos que modifiquen el estado directamente.
 :::
 * **sagas.js**: Si al lanzar una acción hay cierta lógica, acceso a apis, ajax, etc.. le asignamos una saga a esa acción.

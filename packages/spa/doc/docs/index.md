@@ -32,14 +32,14 @@ Si hay alguna saga que esté escuchando esa acción que hemos ejecutado, la inte
 En este punto es donde se accederá a una API, enviaremos un ajax, etc... y con la respuesta de esa petición, la guardaremos en el estado ó ejecutaremos otra acción (Efecto secundario) enviandole la respuesta para que sea procesada o lo que tengamos que hacer con la información.
 
 :::tip
-Cuando queremos guardar en el store el resultado de nuestra petición AJAX, debemos ejecutar otra acción (Efecto secundario)
+Cuando queremos guardar en el store el resultado de nuestra petición AJAX, debemos ejecutar otra acción, una dispara el evento que solicita los datos a la api via AJAX y otra acción la usamos para guardar la respuesta de la api (Efecto secundario o side effect)
 :::
 
 
 :::tip
-Recuerda diferenciar los nombres de las acciones entra tu saga y reducer.
+Recuerda diferenciar los nombres de las acciones entre tu saga y reducer.
 
-Una buena practica cuando tienes que hacer una petición AJAX y guardar el resultado en el store pordría ser tener una acción que será interceptada por nuestra saga (**FETCH_PETICION1**) donde haremos el ajax y guardaremos el resultado en una variable, para ejecutar un efecto secundario, es decir, otra acción (**SAVE_RESPONSE_PETICION1**) donde le enviaremos en el payload el resultado de la petición.
+Una buena practica cuando tienes que hacer una petición AJAX y guardar el resultado en el store pordría ser tener una acción que será interceptada por nuestra saga (**FETCH_REQUEST1**) donde haremos el ajax y guardaremos el resultado en una variable, para ejecutar un efecto secundario, es decir, otra acción (**SAVE_RESPONSE_REQUEST1**) donde le enviaremos en el payload el resultado de la petición.
 
 Esta secunda acción, no tendrá ninguna saga, sólo estará mapeada en nuestro reducer.js, de esta forma, cuando responda el ajax, se envia esa acción adicional y que lo guardará en el estado y rehidratará nuestro contenedor (Si el contenedor está escuchando ese estado)
 :::
@@ -66,7 +66,6 @@ Cada contenedor representa a una página o sección de nuestra aplicación.
 #### Responsabilidades de los contenedores
 Cada contenedor deberá:
   * Escuchar el ó los estados que realmente necesita esa página.
-  * Importar un helper que recibirá las props y devolverá todos los datos que necesita el componente página para ser renderizado.
 
 Por cada contenedor tendremos un fichero donde conectamos a nuestro contenedor con el store y leemos diferentes partes del estado de la aplicación.
 
@@ -74,26 +73,26 @@ Este fichero es el que usamos para registrar un contendor a una url.
 
 ### * Acción
 Una acción representa un evento en nuestra aplicación. Cada acción puede desencadenar otras acciones (efectos secundarios)
-Las acciones son funciones puras, es decir, no deben poseer ninguna lógica, calculos, condicionales, etc.. 
+Las acciones son funciones puras, es decir, no deben poseer ninguna lógica, calculos, condicionales, etc..
 
 :::important
 Las acciones describen que algo pasó
 :::
 #### Anatomia de una acción
-Cada acción sólo deberá devolver un objeto que describe a la acción que se quiere enviar. 
+Cada acción sólo deberá devolver un objeto que describe a la acción que se quiere enviar.
 El objeto debe tener 2 keys:
 * **Type**: Aqui importamos una constante que contiene el nombre único para esta acción (No pueden haber dos o más acciones con el mismo nombre)
 * **Payload**: Si la acción recibe parametros de entrada debemos devolverlos dentro de la key payload, en caso que no reciba parámetros devolveremos siempre el payload como un objeto vacio.
 
 ```javascript
-export const loadShoppingCart = (forcedType = 'fixed') => ({
-    type: LOAD_SHOPPING_CART,
+export const redirectToUrl = (url) => ({
+    type: REDIRECT_TO_URL,
     payload: {
-        forcedType,
+        url,
     },
 });
 ```
-En este caso recibimos por parametro el **forcedType** y nuestra acción lo devuelve tal cual en el payload junto al **type** que seria un nombre único para la acción.
+En este caso recibimos por parametro el **url** y nuestra acción lo devuelve tal cual en el payload junto al **type** que seria un nombre único para la acción.
 
 
 ### * Reducers
