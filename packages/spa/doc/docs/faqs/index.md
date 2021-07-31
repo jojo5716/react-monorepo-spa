@@ -35,7 +35,7 @@ export function* loadHeader() {
     yield take(LOAD_HEADER);  //Fijese que con esto escuchamos cuando se ejecute alguna acción que en el type tenga el mismo valor (LOAD_HEADER) de esta forma cuando llamamos nuestra acción la interceptamos en la saga.
 
     try {
-        const headerResponse = yield call(mobilisAPI.header);  // Hacemos la petición ajax y guardamos la respuesta en una variable
+        const headerResponse = yield call(API.header);  // Hacemos la petición ajax y guardamos la respuesta en una variable
 
         yield put({  // Ejecutamos otra acción (Efecto secundario) para guardar la respuesta en el store
             type: SAVE_HEADER_RESPONSE,  // Esta acción no tiene ninguna saga asociada pero está mapeada dentro de nuestro reducer.js
@@ -45,11 +45,11 @@ export function* loadHeader() {
         });
     } catch (error) {
         /** Si el ajax fallara, ejecutamos otra acción que no tiene saga
-         *  pero está en el reducer y generamos un estado nuevo asignando 
-         * como null las props del header (Suponiendo que si falla queremos 
-         * dejarlo como null para que quede el loader eternamente) 
+         *  pero está en el reducer y generamos un estado nuevo asignando
+         * como null las props del header (Suponiendo que si falla queremos
+         * dejarlo como null para que quede el loader eternamente)
          * **/
-        yield put({  
+        yield put({
             type: SAVE_HEADER_RESPONSE_FAILED,
             payload: {
                 header: null,
@@ -77,7 +77,7 @@ export default function* root() {
 export function* watchActions() {
     // Esto es sólo si queremos enviar la misma acción varias veces en diferentes puntos de la app.
     // Quiza el header no es el mejor ejemplo para mostrar esto, pero es solo por demostrar como funciona.
-    // Header lo solemos cargar una sola vez, pero una acción como solicitar una disponibilidad de habitaciones
+    // Header lo solemos cargar una sola vez, pero una acción como solicitar algo que pueda cambiar constantemente (precios por ejemplos)
     // podriamos deducir que podria ocurrir multiple veces (un usuario jugando con las fechas y comparando precios)
     // Esa misma acción necesitara que cada vez que se ejecute, llame a su saga, para eso debemos agregar el
     // takeEvery.
@@ -95,9 +95,6 @@ import {
 
 import { reducer as helperReducer } from '@src/helpers/reducer';
 
-module.exports = {
-    reducer,
-};
 
 // Configuramos nuestro estado inicial para este reducer
 const initialState = {
@@ -113,10 +110,14 @@ function reducer(state = initialState, action) {
     // Si la acción está dentro de la variable reducerMap
     // entonces lo marcamos como valido
     const isValidAction = reducerMap.indexOf(action.type) !== -1;
-    
+
     // Si la acción es valida mergeamos, sino devolvemos el estado actual.
     return isValidAction ? { ...state, ...action.payload } : state;
 }
+
+export default {
+    reducer,
+};
 ```
 
 ## Al llamar a una acción no se ejecuta la saga
